@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">1582</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-488829919"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-488829919" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/CurveFpInterface.html">CurveFpInterface</a></li>
+                                                    <li class="interface"><a href="../classes/PublicKeyInterface.html">PublicKeyInterface</a></li>
+                                                    <li class="interface"><a href="../classes/PrivateKeyInterface.html">PrivateKeyInterface</a></li>
+                                                    <li class="interface"><a href="../classes/PointInterface.html">PointInterface</a></li>
+                                                    <li class="interface"><a href="../classes/EcDHInterface.html">EcDHInterface</a></li>
+                                                    <li class="interface"><a href="../classes/SignatureInterface.html">SignatureInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Template.html">Template</a></li>
+                                                    <li class="class"><a href="../classes/Orders.html">Orders</a></li>
+                                                    <li class="class"><a href="../classes/Authorize.html">Authorize</a></li>
+                                                    <li class="class"><a href="../classes/Admin.html">Admin</a></li>
+                                                    <li class="class"><a href="../classes/Messages.html">Messages</a></li>
+                                                    <li class="class"><a href="../classes/Callback.html">Callback</a></li>
+                                                    <li class="class"><a href="../classes/Welcome.html">Welcome</a></li>
+                                                    <li class="class"><a href="../classes/Listings.html">Listings</a></li>
+                                                    <li class="class"><a href="../classes/Bitcoin_Test.html">Bitcoin_Test</a></li>
+                                                    <li class="class"><a href="../classes/Users.html">Users</a></li>
+                                                    <li class="class"><a href="../classes/Accounts.html">Accounts</a></li>
+                                                    <li class="class"><a href="../classes/Image.html">Image</a></li>
+                                                    <li class="class"><a href="../classes/Items.html">Items</a></li>
+                                                    <li class="class"><a href="../classes/Reviews.html">Reviews</a></li>
+                                                    <li class="class"><a href="../classes/Bw_captcha.html">Bw_captcha</a></li>
+                                                    <li class="class"><a href="../classes/Bw_session.html">Bw_session</a></li>
+                                                    <li class="class"><a href="../classes/MY_Form_validation.html">MY_Form_validation</a></li>
+                                                    <li class="class"><a href="../classes/Current_User.html">Current_User</a></li>
+                                                    <li class="class"><a href="../classes/Bw_Transaction.html">Bw_Transaction</a></li>
+                                                    <li class="class"><a href="../classes/QRrsItem.html">QRrsItem</a></li>
+                                                    <li class="class"><a href="../classes/QRrs.html">QRrs</a></li>
+                                                    <li class="class"><a href="../classes/QRimage.html">QRimage</a></li>
+                                                    <li class="class"><a href="../classes/QRbitstream.html">QRbitstream</a></li>
+                                                    <li class="class"><a href="../classes/QRrsblock.html">QRrsblock</a></li>
+                                                    <li class="class"><a href="../classes/QRrawcode.html">QRrawcode</a></li>
+                                                    <li class="class"><a href="../classes/QRcode.html">QRcode</a></li>
+                                                    <li class="class"><a href="../classes/FrameFiller.html">FrameFiller</a></li>
+                                                    <li class="class"><a href="../classes/QRencode.html">QRencode</a></li>
+                                                    <li class="class"><a href="../classes/qrstr.html">qrstr</a></li>
+                                                    <li class="class"><a href="../classes/QRtools.html">QRtools</a></li>
+                                                    <li class="class"><a href="../classes/QRspec.html">QRspec</a></li>
+                                                    <li class="class"><a href="../classes/QRimage.html">QRimage</a></li>
+                                                    <li class="class"><a href="../classes/QRinputItem.html">QRinputItem</a></li>
+                                                    <li class="class"><a href="../classes/QRinput.html">QRinput</a></li>
+                                                    <li class="class"><a href="../classes/QRbitstream.html">QRbitstream</a></li>
+                                                    <li class="class"><a href="../classes/QRsplit.html">QRsplit</a></li>
+                                                    <li class="class"><a href="../classes/QRrsItem.html">QRrsItem</a></li>
+                                                    <li class="class"><a href="../classes/QRrs.html">QRrs</a></li>
+                                                    <li class="class"><a href="../classes/QRmask.html">QRmask</a></li>
+                                                    <li class="class"><a href="../classes/QRrsblock.html">QRrsblock</a></li>
+                                                    <li class="class"><a href="../classes/QRrawcode.html">QRrawcode</a></li>
+                                                    <li class="class"><a href="../classes/QRcode.html">QRcode</a></li>
+                                                    <li class="class"><a href="../classes/FrameFiller.html">FrameFiller</a></li>
+                                                    <li class="class"><a href="../classes/QRencode.html">QRencode</a></li>
+                                                    <li class="class"><a href="../classes/QRspec.html">QRspec</a></li>
+                                                    <li class="class"><a href="../classes/QRinputItem.html">QRinputItem</a></li>
+                                                    <li class="class"><a href="../classes/QRinput.html">QRinput</a></li>
+                                                    <li class="class"><a href="../classes/QRtools.html">QRtools</a></li>
+                                                    <li class="class"><a href="../classes/qrstr.html">qrstr</a></li>
+                                                    <li class="class"><a href="../classes/QRsplit.html">QRsplit</a></li>
+                                                    <li class="class"><a href="../classes/QRmask.html">QRmask</a></li>
+                                                    <li class="class"><a href="../classes/Price_Index.html">Price_Index</a></li>
+                                                    <li class="class"><a href="../classes/Version_Checker.html">Version_Checker</a></li>
+                                                    <li class="class"><a href="../classes/Bw_config.html">Bw_config</a></li>
+                                                    <li class="class"><a href="../classes/Jsonrpcclient.html">Jsonrpcclient</a></li>
+                                                    <li class="class"><a href="../classes/Raw_transaction.html">Raw_transaction</a></li>
+                                                    <li class="class"><a href="../classes/General.html">General</a></li>
+                                                    <li class="class"><a href="../classes/Openssl.html">Openssl</a></li>
+                                                    <li class="class"><a href="../classes/BitcoinLib.html">BitcoinLib</a></li>
+                                                    <li class="class"><a href="../classes/Ciqrcode.html">Ciqrcode</a></li>
+                                                    <li class="class"><a href="../classes/Layout.html">Layout</a></li>
+                                                    <li class="class"><a href="../classes/Bw_messages.html">Bw_messages</a></li>
+                                                    <li class="class"><a href="../classes/Image.html">Image</a></li>
+                                                    <li class="class"><a href="../classes/TOTP.html">TOTP</a></li>
+                                                    <li class="class"><a href="../classes/Bw_curl.html">Bw_curl</a></li>
+                                                    <li class="class"><a href="../classes/Autorun.html">Autorun</a></li>
+                                                    <li class="class"><a href="../classes/PrivateKey.html">PrivateKey</a></li>
+                                                    <li class="class"><a href="../classes/TestSuite.html">TestSuite</a></li>
+                                                    <li class="class"><a href="../classes/gmp_Utils.html">gmp_Utils</a></li>
+                                                    <li class="class"><a href="../classes/bcmath_Utils.html">bcmath_Utils</a></li>
+                                                    <li class="class"><a href="../classes/EcDH.html">EcDH</a></li>
+                                                    <li class="class"><a href="../classes/CurveFp.html">CurveFp</a></li>
+                                                    <li class="class"><a href="../classes/Point.html">Point</a></li>
+                                                    <li class="class"><a href="../classes/SECcurve.html">SECcurve</a></li>
+                                                    <li class="class"><a href="../classes/NISTcurve.html">NISTcurve</a></li>
+                                                    <li class="class"><a href="../classes/NumberTheory.html">NumberTheory</a></li>
+                                                    <li class="class"><a href="../classes/Signature.html">Signature</a></li>
+                                                    <li class="class"><a href="../classes/PublicKey.html">PublicKey</a></li>
+                                                    <li class="class"><a href="../classes/Electrum.html">Electrum</a></li>
+                                                    <li class="class"><a href="../classes/Bw_auth.html">Bw_auth</a></li>
+                                                    <li class="class"><a href="../classes/GPG.html">GPG</a></li>
+                                                    <li class="class"><a href="../classes/Bw_bitcoin.html">Bw_bitcoin</a></li>
+                                                    <li class="class"><a href="../classes/BIP32.html">BIP32</a></li>
+                                                    <li class="class"><a href="../classes/Admin_model.html">Admin_model</a></li>
+                                                    <li class="class"><a href="../classes/Disputes_model.html">Disputes_model</a></li>
+                                                    <li class="class"><a href="../classes/Transaction_cache_model.html">Transaction_cache_model</a></li>
+                                                    <li class="class"><a href="../classes/Currencies_model.html">Currencies_model</a></li>
+                                                    <li class="class"><a href="../classes/Autorun_model.html">Autorun_model</a></li>
+                                                    <li class="class"><a href="../classes/Listings_model.html">Listings_model</a></li>
+                                                    <li class="class"><a href="../classes/Images_model.html">Images_model</a></li>
+                                                    <li class="class"><a href="../classes/Accounts_model.html">Accounts_model</a></li>
+                                                    <li class="class"><a href="../classes/Review_model.html">Review_model</a></li>
+                                                    <li class="class"><a href="../classes/Categories_model.html">Categories_model</a></li>
+                                                    <li class="class"><a href="../classes/Shipping_costs_model.html">Shipping_costs_model</a></li>
+                                                    <li class="class"><a href="../classes/Fees_model.html">Fees_model</a></li>
+                                                    <li class="class"><a href="../classes/Users_model.html">Users_model</a></li>
+                                                    <li class="class"><a href="../classes/Items_model.html">Items_model</a></li>
+                                                    <li class="class"><a href="../classes/Auth_model.html">Auth_model</a></li>
+                                                    <li class="class"><a href="../classes/Location_model.html">Location_model</a></li>
+                                                    <li class="class"><a href="../classes/Order_model.html">Order_model</a></li>
+                                                    <li class="class"><a href="../classes/Bitcoin_model.html">Bitcoin_model</a></li>
+                                                    <li class="class"><a href="../classes/Review_auth_model.html">Review_auth_model</a></li>
+                                                    <li class="class"><a href="../classes/Alerts_model.html">Alerts_model</a></li>
+                                                    <li class="class"><a href="../classes/Logs_Model.html">Logs_Model</a></li>
+                                                    <li class="class"><a href="../classes/General_model.html">General_model</a></li>
+                                                    <li class="class"><a href="../classes/Messages_model.html">Messages_model</a></li>
+                                                    <li class="class"><a href="../classes/Config_model.html">Config_model</a></li>
+                                                    <li class="class"><a href="../classes/CI_Input.html">CI_Input</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\</small>Accounts</h1>
+                    <p><em>Accounts Management Controller</em></p>
+                    
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Accounts.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Accounts.html#method_view" class="">view()</a><br />
+                                                                    <a href="../classes/Accounts.html#method_public_keys" class="">public_keys()</a><br />
+                                                                    <a href="../classes/Accounts.html#method_me" class="">me()</a><br />
+                                                                    <a href="../classes/Accounts.html#method_edit" class="">edit()</a><br />
+                                                                    <a href="../classes/Accounts.html#method_disable_2fa" class="">disable_2fa()</a><br />
+                                                                    <a href="../classes/Accounts.html#method_enable_pgp_factor" class="">enable_pgp_factor()</a><br />
+                                                                    <a href="../classes/Accounts.html#method_two_factor" class="">two_factor()</a><br />
+                                                                    <a href="../classes/Accounts.html#method_delete_pgp" class="">delete_pgp()</a><br />
+                                                                    <a href="../classes/Accounts.html#method_replace_pgp" class="">replace_pgp()</a><br />
+                                                                    <a href="../classes/Accounts.html#method_add_pgp" class="">add_pgp()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/controllers.Accounts.php.html"><div class="path-wrapper">controllers/Accounts.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\BitWasp\Controllers</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper">\CI_Controller</div>
+                                                                                                    <div class="namespace-wrapper">\Accounts</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                category
+                            </th>
+                            <td>
+                                                                    <p>Accounts</p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                    <p>BitWasp</p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                        
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct()</pre>
+                <p><em>Constructor</em></p>
+                
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_view" name="method_view" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">view()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">view(string <span class="argument">$hash</span>)</pre>
+                <p><em>View a users profile
+URI: /user/$hash</em></p>
+                <p>Users can load a public profile of other users. If the
+Accounts_Model\get() returns FALSE, the requested account does not
+exist, and the user is redirected to the homepage. Otherwise,
+the specified view is loaded into the Layout class.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$hash</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_public_keys" name="method_public_keys" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">public_keys()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">public_keys()</pre>
+                <p><em>Public Keys
+URI: /account/public_keys</em></p>
+                <p>This page allows vendors to add a list of public keys for use in
+orders.</p>
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_me" name="method_me" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">me()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">me() : void</pre>
+                <p><em>View own user profile
+URI: /account</em></p>
+                <p>A user can view their own account settings. Accounts_Model\get is called
+but this time, an additional option is set to confirm it's the
+users own account, and additional info besides the norm should be
+loaded from the database. The data is then sent to the Layout class
+to be displayed.</p>
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_edit" name="method_edit" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">edit()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">edit() : void</pre>
+                <p><em>Edit own account settings
+URI: /account/edit</em></p>
+                <p>Users can alter their account settings. They may choose to alter
+their local currency, their current location, whether their login
+activity is displayed, (and their PGP fingerprint if they have it,
+along with options for Two-Factor Auth and Forced PGP Messages).
+Users may be forced to replace their PGP key, instead of delete it.
+This is done in the view by using $data['option_replace_pgp'] = TRUE.</p>
+<p>Different Form_Validation rules are chosen based on whether the
+user has a PGP key currently set up on their account. Once past
+form validation, we compare POSTed values to what we have in the
+database, filter unchanged entries, and update if there is anything
+to update.</p>
+<p>Redirect on success, or display an error.</p>
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                            <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                            <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_disable_2fa" name="method_disable_2fa" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">disable_2fa()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">disable_2fa()</pre>
+                <p><em>Disable 2FA
+URI: /account/disable_2fa</em></p>
+                <p>This page allows users to disable the current two factor setting
+on their account after passing the correct challenge.</p>
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_enable_pgp_factor" name="method_enable_pgp_factor" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">enable_pgp_factor()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">enable_pgp_factor()</pre>
+                <p><em>Enable PGP Factor</em></p>
+                <p>This page generates an encrypted challenge for the user to decrypt
+and paste to the site before enabling PGP 2fa.</p>
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_two_factor" name="method_two_factor" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">two_factor()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">two_factor()</pre>
+                <p><em>Two Factor Panel</em></p>
+                <p>Allow users to set up TOTP or PGP two factor authentication.</p>
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_delete_pgp" name="method_delete_pgp" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">delete_pgp()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">delete_pgp() : void</pre>
+                <p><em>Delete PGP key from account.</em></p>
+                <p>URI: /pgp/delete</p>
+<p>User will be redirected if they are forced to replace instead of delete.
+If the user has no PGP key, they will get redirected also. If the
+form validation is successful, delete the PGP key. Even if we didn't
+delete the key, redirect the accounts page.</p>
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                            <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                            <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_replace_pgp" name="method_replace_pgp" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">replace_pgp()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">replace_pgp() : void</pre>
+                <p><em>Replace current PGP key.</em></p>
+                <p>URI: /pgp/replace</p>
+<p>Sometimes called instead of pgp/delete (as the user might be forced
+to have a PGP key at all times). The new key is imported using the GPG\import
+function. This function strips out the PGP key from the input, and performs
+HTMlentities on the remaining key if it passes validation.
+If replacing the key is successful, redirect, otherwise display
+an error.</p>
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                            <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                            <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_add_pgp" name="method_add_pgp" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">add_pgp()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">add_pgp() : void</pre>
+                <p><em>Add a PGP key to account.</em></p>
+                <p>URI: /pgp/add</p>
+<p>If a user is forced to keep their PGP key, they can only replace it.
+They will be redirected to the Replace PGP Key form. If they already
+have a PGP key, then we redirect them to the account information page.</p>
+<p>If form validation goes through, the GPG\import function checks
+the key is valid. If so, the key is inserted, and the user redirected.
+On failure, an error message is displayed.</p>
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                            <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Accounts.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/controllers/Accounts.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on May 14th, 2014 at 03:32.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

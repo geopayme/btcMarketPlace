@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">1582</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-224193441"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-224193441" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/CurveFpInterface.html">CurveFpInterface</a></li>
+                                                    <li class="interface"><a href="../classes/PublicKeyInterface.html">PublicKeyInterface</a></li>
+                                                    <li class="interface"><a href="../classes/PrivateKeyInterface.html">PrivateKeyInterface</a></li>
+                                                    <li class="interface"><a href="../classes/PointInterface.html">PointInterface</a></li>
+                                                    <li class="interface"><a href="../classes/EcDHInterface.html">EcDHInterface</a></li>
+                                                    <li class="interface"><a href="../classes/SignatureInterface.html">SignatureInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Template.html">Template</a></li>
+                                                    <li class="class"><a href="../classes/Orders.html">Orders</a></li>
+                                                    <li class="class"><a href="../classes/Authorize.html">Authorize</a></li>
+                                                    <li class="class"><a href="../classes/Admin.html">Admin</a></li>
+                                                    <li class="class"><a href="../classes/Messages.html">Messages</a></li>
+                                                    <li class="class"><a href="../classes/Callback.html">Callback</a></li>
+                                                    <li class="class"><a href="../classes/Welcome.html">Welcome</a></li>
+                                                    <li class="class"><a href="../classes/Listings.html">Listings</a></li>
+                                                    <li class="class"><a href="../classes/Bitcoin_Test.html">Bitcoin_Test</a></li>
+                                                    <li class="class"><a href="../classes/Users.html">Users</a></li>
+                                                    <li class="class"><a href="../classes/Accounts.html">Accounts</a></li>
+                                                    <li class="class"><a href="../classes/Image.html">Image</a></li>
+                                                    <li class="class"><a href="../classes/Items.html">Items</a></li>
+                                                    <li class="class"><a href="../classes/Reviews.html">Reviews</a></li>
+                                                    <li class="class"><a href="../classes/Bw_captcha.html">Bw_captcha</a></li>
+                                                    <li class="class"><a href="../classes/Bw_session.html">Bw_session</a></li>
+                                                    <li class="class"><a href="../classes/MY_Form_validation.html">MY_Form_validation</a></li>
+                                                    <li class="class"><a href="../classes/Current_User.html">Current_User</a></li>
+                                                    <li class="class"><a href="../classes/Bw_Transaction.html">Bw_Transaction</a></li>
+                                                    <li class="class"><a href="../classes/QRrsItem.html">QRrsItem</a></li>
+                                                    <li class="class"><a href="../classes/QRrs.html">QRrs</a></li>
+                                                    <li class="class"><a href="../classes/QRimage.html">QRimage</a></li>
+                                                    <li class="class"><a href="../classes/QRbitstream.html">QRbitstream</a></li>
+                                                    <li class="class"><a href="../classes/QRrsblock.html">QRrsblock</a></li>
+                                                    <li class="class"><a href="../classes/QRrawcode.html">QRrawcode</a></li>
+                                                    <li class="class"><a href="../classes/QRcode.html">QRcode</a></li>
+                                                    <li class="class"><a href="../classes/FrameFiller.html">FrameFiller</a></li>
+                                                    <li class="class"><a href="../classes/QRencode.html">QRencode</a></li>
+                                                    <li class="class"><a href="../classes/qrstr.html">qrstr</a></li>
+                                                    <li class="class"><a href="../classes/QRtools.html">QRtools</a></li>
+                                                    <li class="class"><a href="../classes/QRspec.html">QRspec</a></li>
+                                                    <li class="class"><a href="../classes/QRimage.html">QRimage</a></li>
+                                                    <li class="class"><a href="../classes/QRinputItem.html">QRinputItem</a></li>
+                                                    <li class="class"><a href="../classes/QRinput.html">QRinput</a></li>
+                                                    <li class="class"><a href="../classes/QRbitstream.html">QRbitstream</a></li>
+                                                    <li class="class"><a href="../classes/QRsplit.html">QRsplit</a></li>
+                                                    <li class="class"><a href="../classes/QRrsItem.html">QRrsItem</a></li>
+                                                    <li class="class"><a href="../classes/QRrs.html">QRrs</a></li>
+                                                    <li class="class"><a href="../classes/QRmask.html">QRmask</a></li>
+                                                    <li class="class"><a href="../classes/QRrsblock.html">QRrsblock</a></li>
+                                                    <li class="class"><a href="../classes/QRrawcode.html">QRrawcode</a></li>
+                                                    <li class="class"><a href="../classes/QRcode.html">QRcode</a></li>
+                                                    <li class="class"><a href="../classes/FrameFiller.html">FrameFiller</a></li>
+                                                    <li class="class"><a href="../classes/QRencode.html">QRencode</a></li>
+                                                    <li class="class"><a href="../classes/QRspec.html">QRspec</a></li>
+                                                    <li class="class"><a href="../classes/QRinputItem.html">QRinputItem</a></li>
+                                                    <li class="class"><a href="../classes/QRinput.html">QRinput</a></li>
+                                                    <li class="class"><a href="../classes/QRtools.html">QRtools</a></li>
+                                                    <li class="class"><a href="../classes/qrstr.html">qrstr</a></li>
+                                                    <li class="class"><a href="../classes/QRsplit.html">QRsplit</a></li>
+                                                    <li class="class"><a href="../classes/QRmask.html">QRmask</a></li>
+                                                    <li class="class"><a href="../classes/Price_Index.html">Price_Index</a></li>
+                                                    <li class="class"><a href="../classes/Version_Checker.html">Version_Checker</a></li>
+                                                    <li class="class"><a href="../classes/Bw_config.html">Bw_config</a></li>
+                                                    <li class="class"><a href="../classes/Jsonrpcclient.html">Jsonrpcclient</a></li>
+                                                    <li class="class"><a href="../classes/Raw_transaction.html">Raw_transaction</a></li>
+                                                    <li class="class"><a href="../classes/General.html">General</a></li>
+                                                    <li class="class"><a href="../classes/Openssl.html">Openssl</a></li>
+                                                    <li class="class"><a href="../classes/BitcoinLib.html">BitcoinLib</a></li>
+                                                    <li class="class"><a href="../classes/Ciqrcode.html">Ciqrcode</a></li>
+                                                    <li class="class"><a href="../classes/Layout.html">Layout</a></li>
+                                                    <li class="class"><a href="../classes/Bw_messages.html">Bw_messages</a></li>
+                                                    <li class="class"><a href="../classes/Image.html">Image</a></li>
+                                                    <li class="class"><a href="../classes/TOTP.html">TOTP</a></li>
+                                                    <li class="class"><a href="../classes/Bw_curl.html">Bw_curl</a></li>
+                                                    <li class="class"><a href="../classes/Autorun.html">Autorun</a></li>
+                                                    <li class="class"><a href="../classes/PrivateKey.html">PrivateKey</a></li>
+                                                    <li class="class"><a href="../classes/TestSuite.html">TestSuite</a></li>
+                                                    <li class="class"><a href="../classes/gmp_Utils.html">gmp_Utils</a></li>
+                                                    <li class="class"><a href="../classes/bcmath_Utils.html">bcmath_Utils</a></li>
+                                                    <li class="class"><a href="../classes/EcDH.html">EcDH</a></li>
+                                                    <li class="class"><a href="../classes/CurveFp.html">CurveFp</a></li>
+                                                    <li class="class"><a href="../classes/Point.html">Point</a></li>
+                                                    <li class="class"><a href="../classes/SECcurve.html">SECcurve</a></li>
+                                                    <li class="class"><a href="../classes/NISTcurve.html">NISTcurve</a></li>
+                                                    <li class="class"><a href="../classes/NumberTheory.html">NumberTheory</a></li>
+                                                    <li class="class"><a href="../classes/Signature.html">Signature</a></li>
+                                                    <li class="class"><a href="../classes/PublicKey.html">PublicKey</a></li>
+                                                    <li class="class"><a href="../classes/Electrum.html">Electrum</a></li>
+                                                    <li class="class"><a href="../classes/Bw_auth.html">Bw_auth</a></li>
+                                                    <li class="class"><a href="../classes/GPG.html">GPG</a></li>
+                                                    <li class="class"><a href="../classes/Bw_bitcoin.html">Bw_bitcoin</a></li>
+                                                    <li class="class"><a href="../classes/BIP32.html">BIP32</a></li>
+                                                    <li class="class"><a href="../classes/Admin_model.html">Admin_model</a></li>
+                                                    <li class="class"><a href="../classes/Disputes_model.html">Disputes_model</a></li>
+                                                    <li class="class"><a href="../classes/Transaction_cache_model.html">Transaction_cache_model</a></li>
+                                                    <li class="class"><a href="../classes/Currencies_model.html">Currencies_model</a></li>
+                                                    <li class="class"><a href="../classes/Autorun_model.html">Autorun_model</a></li>
+                                                    <li class="class"><a href="../classes/Listings_model.html">Listings_model</a></li>
+                                                    <li class="class"><a href="../classes/Images_model.html">Images_model</a></li>
+                                                    <li class="class"><a href="../classes/Accounts_model.html">Accounts_model</a></li>
+                                                    <li class="class"><a href="../classes/Review_model.html">Review_model</a></li>
+                                                    <li class="class"><a href="../classes/Categories_model.html">Categories_model</a></li>
+                                                    <li class="class"><a href="../classes/Shipping_costs_model.html">Shipping_costs_model</a></li>
+                                                    <li class="class"><a href="../classes/Fees_model.html">Fees_model</a></li>
+                                                    <li class="class"><a href="../classes/Users_model.html">Users_model</a></li>
+                                                    <li class="class"><a href="../classes/Items_model.html">Items_model</a></li>
+                                                    <li class="class"><a href="../classes/Auth_model.html">Auth_model</a></li>
+                                                    <li class="class"><a href="../classes/Location_model.html">Location_model</a></li>
+                                                    <li class="class"><a href="../classes/Order_model.html">Order_model</a></li>
+                                                    <li class="class"><a href="../classes/Bitcoin_model.html">Bitcoin_model</a></li>
+                                                    <li class="class"><a href="../classes/Review_auth_model.html">Review_auth_model</a></li>
+                                                    <li class="class"><a href="../classes/Alerts_model.html">Alerts_model</a></li>
+                                                    <li class="class"><a href="../classes/Logs_Model.html">Logs_Model</a></li>
+                                                    <li class="class"><a href="../classes/General_model.html">General_model</a></li>
+                                                    <li class="class"><a href="../classes/Messages_model.html">Messages_model</a></li>
+                                                    <li class="class"><a href="../classes/Config_model.html">Config_model</a></li>
+                                                    <li class="class"><a href="../classes/CI_Input.html">CI_Input</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\</small>Bw_bitcoin</h1>
+                    <p><em>Bitcoin Library</em></p>
+                    <p>This library is a socket for the JSON RPC interface.
+Configuration is loaded from ./application/config/bitcoin.php
+The class contains functions for bitcoind and functions for
+bitcoind to callback in order to track information about new transactions.
+Also contains a function to update exchange rates from the selected
+provider.</p>
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Bw_bitcoin.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Bw_bitcoin.html#method_get_exchange_rates" class="">get_exchange_rates()</a><br />
+                                                                    <a href="../classes/Bw_bitcoin.html#method_getblock" class="">getblock()</a><br />
+                                                                    <a href="../classes/Bw_bitcoin.html#method_getblockhash" class="">getblockhash()</a><br />
+                                                                    <a href="../classes/Bw_bitcoin.html#method_getinfo" class="">getinfo()</a><br />
+                                                                    <a href="../classes/Bw_bitcoin.html#method_getrawtransaction" class="">getrawtransaction()</a><br />
+                                                                    <a href="../classes/Bw_bitcoin.html#method_createrawtransaction" class="">createrawtransaction()</a><br />
+                                                                    <a href="../classes/Bw_bitcoin.html#method_decoderawtransaction" class="">decoderawtransaction()</a><br />
+                                                                    <a href="../classes/Bw_bitcoin.html#method_signrawtransaction" class="">signrawtransaction()</a><br />
+                                                                    <a href="../classes/Bw_bitcoin.html#method_sendrawtransaction" class="">sendrawtransaction()</a><br />
+                                                                    <a href="../classes/Bw_bitcoin.html#method_addmultisigaddress" class="">addmultisigaddress()</a><br />
+                                                                    <a href="../classes/Bw_bitcoin.html#method_createmultisig" class="">createmultisig()</a><br />
+                                                                    <a href="../classes/Bw_bitcoin.html#method_importprivkey" class="">importprivkey()</a><br />
+                                                                    <a href="../classes/Bw_bitcoin.html#method_get_inputs_pkscripts" class="">get_inputs_pkscripts()</a><br />
+                                                                    <a href="../classes/Bw_bitcoin.html#method_ratenotify" class="">ratenotify()</a><br />
+                                                                    <a href="../classes/Bw_bitcoin.html#method_check_alert" class="">check_alert()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Bw_bitcoin.html#property_config" class="">$config</a><br />
+                                                                    <a href="../classes/Bw_bitcoin.html#property_testnet" class="">$testnet</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Bw_bitcoin.html#property_CI" class="">$CI</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/libraries.Bw_bitcoin.php.html"><div class="path-wrapper">libraries/Bw_bitcoin.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\BitWasp\Libraries</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Bw_bitcoin</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                category
+                            </th>
+                            <td>
+                                                                    <p>Bitcoin</p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                    <p>BitWasp</p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_config" name="property_config" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$config</h3>
+                <pre class="signature">$config</pre>
+                <p><em>Config</em></p>
+                <p>This variable contains the bitcoin credentials for the JSON rpc
+interface.</p>
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_testnet" name="property_testnet" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$testnet</h3>
+                <pre class="signature">$testnet</pre>
+                <p><em>Testnet</em></p>
+                <p>Flag to tell the site if we are currently working in the testnet or
+the main bitcoin chain.</p>
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_CI" name="property_CI" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$CI</h3>
+                <pre class="signature">$CI</pre>
+                <p><em>CI</em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct()</pre>
+                <p><em>Constructor</em></p>
+                <p>Load the bitcoin configuration using CodeIgniters config library.
+Load the jsonRPCclient library with the config, and the bitcoin
+model</p>
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get_exchange_rates" name="method_get_exchange_rates" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">get_exchange_rates()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get_exchange_rates() : \array/FALSE</pre>
+                <p><em>Get Exchange Rates</em></p>
+                <p>Load exchange rates from the defined BPI. Called by bw_bitcoin/ratenotify().</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    \array/FALSE
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getblock" name="method_getblock" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getblock()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getblock(string <span class="argument">$block_hash</span>) : array</pre>
+                <p><em>Get Block</em></p>
+                <p>Function to query bitcoind, to get information about a block ($block_hash)
+Returns an array containing the account name if successful, or
+an array describing the error on failure.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$block_hash</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getblockhash" name="method_getblockhash" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getblockhash()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getblockhash(string <span class="argument">$block_no</span>) : string</pre>
+                <p><em>Get Block Hash</em></p>
+                <p>Function to query bitcoind, to get the block hash for a particular
+height.
+Returns a string containing the block hash if successful, or an
+array describing the error on failure.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$block_no</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>/ array</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getinfo" name="method_getinfo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getinfo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getinfo() : string</pre>
+                <p><em>Get Info</em></p>
+                <p>Function to query bitcoind for general information, like version,
+block height, balance, difficulty,</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>/ array</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getrawtransaction" name="method_getrawtransaction" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getrawtransaction()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getrawtransaction(string <span class="argument">$transaction_id</span>) : string</pre>
+                <p><em>Get Raw Transaction</em></p>
+                <p>Ask bitcoind to return the raw transaction, identified by $transaction_id</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$transaction_id</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_createrawtransaction" name="method_createrawtransaction" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">createrawtransaction()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">createrawtransaction(array <span class="argument">$transaction</span>) : string</pre>
+                <p><em>Create Raw Transaction</em></p>
+                <p>This function works with the output of the bw_transaction->generate()
+function. This is an array with the indexes 'inputs', and 'outputs'.
+These are sent to bitcoind to be built into a transaction. Returns
+the raw transaction hex, or an error array.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$transaction</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_decoderawtransaction" name="method_decoderawtransaction" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">decoderawtransaction()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">decoderawtransaction(string <span class="argument">$transaction_hex</span>) : array</pre>
+                <p><em>Decode Raw Transaction</em></p>
+                <p>Decodes raw $transaction_hex into an array. $transaction_hex is
+the output of getrawtransaction, or createrawtransaction.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$transaction_hex</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_signrawtransaction" name="method_signrawtransaction" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">signrawtransaction()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">signrawtransaction(string <span class="argument">$transaction_hex</span>, array <span class="argument">$inputs</span>, array <span class="argument">$privkeys</span>) : array</pre>
+                <p><em>Sign Raw Transaction</em></p>
+                <p>This function when provided with only $transaction_hex will attempt
+to sign the transaction using any keys found in the wallet.
+If the transaction is unsigned, then the inputs are required. $inputs
+is an array.
+If the wallet does not have the private key, then it will need to
+be supplied as a third parameter. A private key, or several, are
+given as an array.
+Returns an array containing:
+ hex: a string - the transaction hex
+ complete: boolean - indicating whether the transaction is fully signed.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$transaction_hex</td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$inputs</td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$privkeys</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_sendrawtransaction" name="method_sendrawtransaction" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">sendrawtransaction()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">sendrawtransaction(string <span class="argument">$transaction_hex</span>) : \string/array</pre>
+                <p><em>Send Raw Transaction</em></p>
+                <p>This function allows you to submit a raw transaction to be broadcast,
+or just to import it to the bitcoin node. Returns a string containing
+the transaction_id, or else an error array.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$transaction_hex</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \string/array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addmultisigaddress" name="method_addmultisigaddress" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addmultisigaddress()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addmultisigaddress(int <span class="argument">$m</span>, array <span class="argument">$public_keys</span>, \(opt)array <span class="argument">$account</span>) : string</pre>
+                <p><em>Add Multisig Address</em></p>
+                <p>This function is used to import a multisignature address into
+the bitcoin wallet. This is required by users when signing an
+unsigned/partially-signed transaction.
+$m determines how many keys out of the total are needed to redeem funds.
+$public_keys is an array containing the public keys. Order is important.
+$account - defaults to the main account.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>int</td>
+                                <td>$m</td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$public_keys</td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>\(opt)array</td>
+                                <td>$account</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_createmultisig" name="method_createmultisig" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">createmultisig()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">createmultisig(int <span class="argument">$m</span>, array <span class="argument">$public_keys</span>) : array</pre>
+                <p><em>Create Multisig</em></p>
+                <p>This function creates a multisignature address for $m out of the
+total number of $public keys. Does not import to the wallet, but
+generates the redeemScript, which contains all users need to verify
+the address, and that it is composed of the correct keys.
+Returns an array containing the redeemScript and address.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>int</td>
+                                <td>$m</td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$public_keys</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_importprivkey" name="method_importprivkey" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">importprivkey()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">importprivkey(string <span class="argument">$wif</span>, string <span class="argument">$account</span>,  <span class="argument">$rescan</span>) : \boolean?</pre>
+                <p><em>Import Private Key</em></p>
+                <p>Function to ask bitcoind to import the wallet import format private
+key $wif, in WIF format. $account defaults to the main account,
+and $rescan left at the default will trigger a reindex of the
+blockchain to search for transactions. This should be set to FALSE
+if the key is only to be used for signing.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$wif</td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$account</td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$rescan</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \boolean?
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get_inputs_pkscripts" name="method_get_inputs_pkscripts" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">get_inputs_pkscripts()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get_inputs_pkscripts(array <span class="argument">$inputs</span>) : array</pre>
+                <p><em>Get Inputs PkScripts</em></p>
+                <p>This function generates JSON inputs for any inputs that are given
+to it. $inputs is an array, where each input is a child array
+containing [txid, vout].</p>
+<p>Returns a JSON string.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$inputs</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_ratenotify" name="method_ratenotify" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">ratenotify()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">ratenotify() : boolean</pre>
+                <p><em>Rate Notify</em></p>
+                <p>Function to query the selected bitcoin price index provider
+for the latest exchange rates between USD/GBP/EUR.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_check_alert" name="method_check_alert" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">check_alert()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">check_alert() : \array/FALSE</pre>
+                <p><em>Check Alert</em></p>
+                <p>Query bitcoin daemon for an alert. Returns an array detailing the
+message and that it came from the bitcoin daemon. Otherwise it
+returns FALSE.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    \array/FALSE
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Bw_bitcoin.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/libraries/Bw_bitcoin.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on May 14th, 2014 at 03:33.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

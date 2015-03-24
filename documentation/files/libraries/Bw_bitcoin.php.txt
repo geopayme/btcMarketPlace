@@ -1,0 +1,351 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
+
+/**
+ * Bitcoin Library
+ * 
+ * This library is a socket for the JSON RPC interface. 
+ * Configuration is loaded from ./application/config/bitcoin.php
+ * The class contains functions for bitcoind and functions for 
+ * bitcoind to callback in order to track information about new transactions.
+ * Also contains a function to update exchange rates from the selected
+ * provider.
+ * 
+ * @package		BitWasp
+ * @subpackage	Libraries
+ * @category	Bitcoin
+ * @author		BitWasp
+ */
+class Bw_bitcoin {
+	
+	/**
+	 * CI
+	 */
+	protected $CI;
+	
+	/**
+	 * Config
+	 * 
+	 * This variable contains the bitcoin credentials for the JSON rpc
+	 * interface. 
+	 */
+	public $config;
+	
+	/** 
+	 * Testnet
+	 * 
+	 * Flag to tell the site if we are currently working in the testnet or
+	 * the main bitcoin chain.
+	 */
+	public $testnet;
+	
+	/**
+	 * Constructor
+	 * 
+	 * Load the bitcoin configuration using CodeIgniters config library.
+	 * Load the jsonRPCclient library with the config, and the bitcoin 
+	 * model
+	 */
+	public function __construct() {
+		$this->CI = &get_instance();
+		
+		$this->CI->config->load('bitcoin', TRUE);
+		$this->config = $this->CI->config->item('bitcoin');	
+
+		$this->CI->load->library('jsonrpcclient', $this->config);
+		$this->CI->load->model('bitcoin_model');
+	}
+
+	/**
+	 * Get Exchange Rates
+	 * 
+	 * Load exchange rates from the defined BPI. Called by bw_bitcoin/ratenotify().
+	 * 
+	 * @return		array/FALSE
+	 */
+	public function get_exchange_rates() {
+		$this->CI->load->library('bw_curl');
+		
+		$source = $this->CI->bw_config->bitcoin_rate_config();
+		$source_name = $this->CI->bw_config->price_index;
+		
+		$json_result = $this->CI->bw_curl->get_request($source['url']);
+		
+		if($json_result == NULL)
+			return FALSE;
+			
+		$array =  json_decode($json_result);
+		if($array !== FALSE && $array !== NULL) {
+			$array->price_index = $source_name;
+			return $array;
+		} else {
+			return FALSE;
+		}
+	}
+
+	/**
+	 * Get Block
+	 * 
+	 * Function to query bitcoind, to get information about a block ($block_hash)
+	 * Returns an array containing the account name if successful, or
+	 * an array describing the error on failure.
+	 * 
+	 * @param		string	$block_hash
+	 * @return		array
+	 */
+	public function getblock($block_hash) {
+		return $this->CI->jsonrpcclient->getblock($block_hash);
+	}
+	
+	/**
+	 * Get Block Hash
+	 * 
+	 * Function to query bitcoind, to get the block hash for a particular
+	 * height.
+	 * Returns a string containing the block hash if successful, or an 
+	 * array describing the error on failure.
+	 * 
+	 * @param		string	$block_no
+	 * @return		string / array
+	 */	
+	public function getblockhash($block_no) {
+		return $this->CI->jsonrpcclient->getblockhash($block_no);
+	}
+		
+	/**
+	 * Get Info
+	 * 
+	 * Function to query bitcoind for general information, like version,
+	 * block height, balance, difficulty, 
+	 * 
+	 * @param		string
+	 * @return		string / array
+	 */		
+	public function getinfo() {
+		return $this->CI->jsonrpcclient->getinfo();
+	}
+	
+	/**
+	 * Get Raw Transaction
+	 * 
+	 * Ask bitcoind to return the raw transaction, identified by $transaction_id
+	 * 
+	 * @param	string	$transaction_id
+	 * @return	string
+	 */
+	public function getrawtransaction($transaction_id) {
+		return $this->CI->jsonrpcclient->getrawtransaction($transaction_id);
+	}
+	
+	/**
+	 * Create Raw Transaction
+	 * 
+	 * This function works with the output of the bw_transaction->generate()
+	 * function. This is an array with the indexes 'inputs', and 'outputs'.
+	 * These are sent to bitcoind to be built into a transaction. Returns
+	 * the raw transaction hex, or an error array.
+	 * 
+	 * @param	array	$transaction
+	 * @return	string
+	 */
+	public function createrawtransaction($transaction) {
+		return $this->CI->jsonrpcclient->createrawtransaction($transaction['inputs'], $transaction['outputs']);
+	}
+	
+	/**
+	 * Decode Raw Transaction
+	 * 
+	 * Decodes raw $transaction_hex into an array. $transaction_hex is
+	 * the output of getrawtransaction, or createrawtransaction.
+	 * 
+	 * @param	string	$transaction_hex
+	 * @return	array
+	 */
+	public function decoderawtransaction($transaction_hex) {
+		return $this->CI->jsonrpcclient->decoderawtransaction($transaction_hex);
+	}
+	
+	/**
+	 * Sign Raw Transaction
+	 * 
+	 * This function when provided with only $transaction_hex will attempt
+	 * to sign the transaction using any keys found in the wallet. 
+	 * If the transaction is unsigned, then the inputs are required. $inputs
+	 * is an array.
+	 * If the wallet does not have the private key, then it will need to 
+	 * be supplied as a third parameter. A private key, or several, are
+	 * given as an array.
+	 * Returns an array containing:
+	 *  hex: a string - the transaction hex
+	 *  complete: boolean - indicating whether the transaction is fully signed.
+	 * 
+	 * @param	string	$transaction_hex
+	 * @param	array	$inputs
+	 * @param	array	$privkeys
+	 * @return	array
+	 */
+	public function signrawtransaction($transaction_hex, $inputs = NULL, $privkeys = NULL) {
+		if($inputs == NULL)
+			return $this->CI->jsonrpcclient->signrawtransaction($transaction_hex);
+		if($privkeys == NULL)
+			return $this->CI->jsonrpcclient->signrawtransaction($transaction_hex, $inputs);
+			
+		return $this->CI->jsonrpcclient->signrawtransaction($transaction_hex, $inputs, $privkeys);
+	}
+	
+	/**
+	 * Send Raw Transaction
+	 * 
+	 * This function allows you to submit a raw transaction to be broadcast, 
+	 * or just to import it to the bitcoin node. Returns a string containing
+	 * the transaction_id, or else an error array.
+	 * 
+	 * @param	string	$transaction_hex
+	 * @return	string/array
+	 */
+	public function sendrawtransaction($transaction_hex) {
+		return $this->CI->jsonrpcclient->sendrawtransaction($transaction_hex);
+	}
+	/**
+	 * Add Multisig Address
+	 * 
+	 * This function is used to import a multisignature address into
+	 * the bitcoin wallet. This is required by users when signing an
+	 * unsigned/partially-signed transaction.
+	 * $m determines how many keys out of the total are needed to redeem funds.
+	 * $public_keys is an array containing the public keys. Order is important.
+	 * $account - defaults to the main account. 
+	 * 
+	 * @param	int	$m
+	 * @param	array	$public_keys
+	 * @param	(opt)array	$account
+	 * @return	string
+	 */
+	public function addmultisigaddress($m, $public_keys, $account = "") { 
+		return $this->CI->jsonrpcclient->addmultisigaddress($m, $public_keys, $account);
+	}
+	
+	/**
+	 * Create Multisig 
+	 * 
+	 * This function creates a multisignature address for $m out of the
+	 * total number of $public keys. Does not import to the wallet, but
+	 * generates the redeemScript, which contains all users need to verify
+	 * the address, and that it is composed of the correct keys.
+	 * Returns an array containing the redeemScript and address.
+	 * 
+	 * @param	int	$m
+	 * @param	array	$public_keys
+	 * @return	array
+	 */
+	public function createmultisig($m, $public_keys) {
+		return $this->CI->jsonrpcclient->createmultisig($m, $public_keys);
+	}
+	
+	/**
+	 * Import Private Key
+	 * 
+	 * Function to ask bitcoind to import the wallet import format private
+	 * key $wif, in WIF format. $account defaults to the main account,
+	 * and $rescan left at the default will trigger a reindex of the 
+	 * blockchain to search for transactions. This should be set to FALSE
+	 * if the key is only to be used for signing.
+	 *
+	 * @param		string	$wif
+	 * @param		string	$account
+	 * @return		boolean?
+	 */
+	public function importprivkey($wif, $account = '', $rescan = TRUE) {
+		return $this->CI->jsonrpcclient->importprivkey("$wif", "$account", $rescan);
+	}
+
+	/**
+	 * Get Inputs PkScripts
+	 * 
+	 * This function generates JSON inputs for any inputs that are given 
+	 * to it. $inputs is an array, where each input is a child array
+	 * containing [txid, vout].
+	 * 
+	 * Returns a JSON string.
+	 * 
+	 * @param	array	$inputs
+	 * @return	array
+	 */
+	public function get_inputs_pkscripts($inputs) {
+		$results = array();
+		foreach($inputs as $input) {
+			$result = array('txid' => $input['txid'],
+							'vout' => (int)$input['vout']);
+			$outpoint = $this->decoderawtransaction($this->getrawtransaction($input['txid']));
+			$result['scriptPubKey'] = $outpoint['vout'][$input['vout']]['scriptPubKey']['hex'];
+			$result['amount'] = $outpoint['vout'][$input['vout']]['value'];
+			
+			$results[] = $result;
+		}
+		return $results;
+	}
+	
+	/**
+	 * Rate Notify
+	 * 
+	 * Function to query the selected bitcoin price index provider
+	 * for the latest exchange rates between USD/GBP/EUR.
+	 * 
+	 * @return		boolean
+	 */		
+	public function ratenotify() {
+		$this->CI->load->model('currencies_model');
+		// Abort if price indexing is disabled.
+		if($this->CI->bw_config->price_index == 'Disabled')
+			return TRUE;
+	
+		// Function to get the exchange rates via an API.
+		$rates = $this->get_exchange_rates();
+
+		if($rates == FALSE) {
+			$this->CI->logs_model->add('Price Index', 'Unable to fetch exchange rates', 'An attempt to update the Bitcoin Exchange rates failed. Please review your ./application/config/bitcoin_index.php file for any errors, or that the proxy is correctly configured','Error');
+			return TRUE;
+		}
+
+		// Parse results depending on where they're from.
+		if($this->CI->bw_config->price_index == 'CoinDesk') {
+			$update = array('time' => strtotime($rates->time->updated),
+							'usd' => str_replace(",", "", $rates->bpi->USD->rate),
+							'gbp' => str_replace(",", "", $rates->bpi->GBP->rate),
+							'eur' => str_replace(",", "", $rates->bpi->EUR->rate),
+							'price_index' => $rates->price_index
+					);
+		} else if($this->CI->bw_config->price_index == 'BitcoinAverage') {
+			$update = array('time' => strtotime($rates->timestamp),
+							'usd' => ($rates->USD->averages->last !== '0.0000') ? str_replace(",", "", $rates->USD->averages->last) : $this->CI->currencies_model->get_exchange_rate('usd'),
+							'gbp' => ($rates->GBP->averages->last !== '0.0000') ? str_replace(",", "", $rates->GBP->averages->last) : $this->CI->currencies_model->get_exchange_rate('gbp'),
+							'eur' => ($rates->EUR->averages->last !== '0.0000') ? str_replace(",", "", $rates->EUR->averages->last) : $this->CI->currencies_model->get_exchange_rate('eur'),
+							'price_index' => $rates->price_index
+					);
+		}
+
+		return (isset($update) && $this->CI->currencies_model->update_exchange_rates($update) == TRUE) ? TRUE : FALSE;
+	}
+	
+	/**
+	 * Check Alert
+	 * 
+	 * Query bitcoin daemon for an alert. Returns an array detailing the
+	 * message and that it came from the bitcoin daemon. Otherwise it
+	 * returns FALSE.
+	 * 
+	 * @return	array/FALSE
+	 */
+	public function check_alert() {
+		
+		// Return false if the bitcoin daemon is offline.
+		$info = $this->getinfo();
+		if(!is_array($info))
+			return FALSE;
+		
+		// Return the string if there's an alert, otherwise false.
+		return (is_string($info['errors']) && strlen($info['errors']) > 0) ? array('message' => $info['errors'], 'source' => 'Bitcoin') : FALSE;
+	}
+
+
+};
+
